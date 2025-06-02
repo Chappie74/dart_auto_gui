@@ -2,7 +2,7 @@
 #include <string>
 #include <chrono>
 #include <thread>
-#include "../include/dart_auto_gui_windows/mouse/mouse.h"
+#include "../include/dart_auto_gui_windows/mouse.h"
 #include <utils.h>
 
 namespace dag
@@ -20,7 +20,7 @@ namespace dag
         {
             if (failSafeTriggered())
             {
-                break;
+                return;
             }
             MOUSEINPUT input;
             ZeroMemory(&input, sizeof(input));
@@ -54,7 +54,7 @@ namespace dag
         {
             if (failSafeTriggered())
             {
-                break;
+                return;
             }
             mouseDown(button);
             mouseUp(Utils::inverseMouseButton(button));
@@ -71,6 +71,12 @@ namespace dag
         executeMouseEvent(input);
     }
 
+    bool Mouse::failSafeTriggered()
+    {
+        POINT p = mousePosition();
+        return (p.x == 0 && p.y == 0);
+    }
+
     // private
     void Mouse::executeMouseEvent(MOUSEINPUT mouseInput)
     {
@@ -81,11 +87,6 @@ namespace dag
         SendInput(1, &input, sizeof(input));
     }
 
-    bool Mouse::failSafeTriggered()
-    {
-        POINT p = mousePosition();
-        return (p.x == 0 && p.y == 0);
-    }
 }
 
 extern "C"

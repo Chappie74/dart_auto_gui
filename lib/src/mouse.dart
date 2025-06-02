@@ -12,22 +12,17 @@ typedef MoveNative = ffi.Void Function(
   ffi.Int32 count,
   ffi.Int32 sleep,
 );
-typedef MouseDownNative = ffi.Void Function(ffi.Int32 button);
-typedef MouseUpNative = ffi.Void Function(ffi.Int32 button);
-typedef ClickNative = ffi.Void Function(
-    ffi.Int32 button, ffi.Int32 clicks, ffi.Int32 interval);
-typedef ScrollNative = ffi.Void Function(ffi.Int32 clicks, ffi.Int32 axis);
+typedef MouseDownNative = ffi.Void Function(ffi.Int32);
+typedef MouseUpNative = ffi.Void Function(ffi.Int32);
+typedef ClickNative = ffi.Void Function(ffi.Int32, ffi.Int32, ffi.Int32);
+typedef ScrollNative = ffi.Void Function(ffi.Int32, ffi.Int32);
 
 /// Typedefs for FFI (Foreign Function Interface) DART function signatures
-typedef MoveDart = void Function(
-  ffi.Pointer<NativePoint> points,
-  int count,
-  int sleep,
-);
-typedef MouseDownDart = void Function(int button);
-typedef MouseUpDart = void Function(int button);
-typedef ClickDart = void Function(int button, int clicks, int interval);
-typedef ScrollDart = void Function(int clicks, int axis);
+typedef MoveDart = void Function(ffi.Pointer<NativePoint>, int, int);
+typedef MouseDownDart = void Function(int);
+typedef MouseUpDart = void Function(int);
+typedef ClickDart = void Function(int, int, int);
+typedef ScrollDart = void Function(int, int);
 
 // ffi function lookup
 final MousePositionNative _mousePositionNative = nativeLib

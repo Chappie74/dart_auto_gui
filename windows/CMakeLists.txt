@@ -12,7 +12,9 @@ set(PLUGIN_NAME "dart_auto_gui_windows")
 list(APPEND PLUGIN_SOURCES
     "src/dart_auto_gui_windows.cpp"
     "src/utils.cpp"
-    "src/mouse/mouse.cpp"
+    "src/mouse.cpp"
+    "src/keyboard_keys.cpp"
+    "src/keyboard.cpp"
 )
 
 add_library(${PLUGIN_NAME} SHARED

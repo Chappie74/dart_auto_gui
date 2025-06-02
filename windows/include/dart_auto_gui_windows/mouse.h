@@ -1,3 +1,4 @@
+#pragma once
 #include <windows.h>
 #include <string>
 #include <list>
@@ -34,9 +35,9 @@ namespace dag
         static void mouseUp(DWORD button);
         static void click(DWORD button, int clicks, int interval);
         static void scroll(int clicks, DWORD axis);
+        static bool failSafeTriggered();
 
     private:
         static void executeMouseEvent(MOUSEINPUT input);
-        static bool Mouse::failSafeTriggered();
     };
 };

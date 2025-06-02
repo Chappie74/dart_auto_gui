@@ -1,6 +1,9 @@
 #include <windows.h>
 #include <string>
 #include <list>
+#include "mouse.h"
+
+#pragma once
 namespace dag
 {
     class Utils

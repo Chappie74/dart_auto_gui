@@ -3,7 +3,7 @@
 #include <list>
 #include <chrono>
 #include <thread>
-#include "../include/dart_auto_gui_windows/mouse/mouse.h"
+#include "../include/dart_auto_gui_windows/mouse.h"
 #include "../include/dart_auto_gui_windows/utils.h"
 namespace dag
 {
@@ -50,4 +50,26 @@ namespace dag
         return vk;
     }
 
+    class RAIIString
+    {
+    public:
+        // Constructor: Allocates and copies the string
+        explicit RAIIString(const char *str)
+            : data_(_strdup(str)) {} // strdup = allocates + copies
+
+        // Destructor: Automatically frees memory
+        ~RAIIString()
+        {
+            if (data_)
+            {
+                free(data_); // Release the C-string
+            }
+        }
+
+        // Get the raw pointer (for C interoperability)
+        const char *c_str() const { return data_; }
+
+    private:
+        char *data_; // Owned C-style string
+    };
 }
